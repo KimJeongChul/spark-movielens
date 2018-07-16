@@ -1,11 +1,17 @@
 import org.apache.spark.SparkContext
 import org.apache.spark.SparkConf
+import org.apache.spark.sql.SparkSession
+import org.apache.spark.sql.types._
+
 import org.apache.spark.ml.recommendation._
 import scala.util.Random
+
 object MoiveLensALS {
   def main(args: Array[String]) {
     val conf = new SparkConf().setAppName("Movie_Lens_ALS")
     val sc = new SparkContext(conf)
+
+    val spark = SparkSession.builder().getOrCreate()
 
     val schema = StructType(Array(
      StructField("uid", IntegerType, true),
